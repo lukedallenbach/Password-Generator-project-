@@ -28,13 +28,13 @@ def password_generator():
 
 
     #code below needs adjusting 
-    #print('If you need help creating a password, one can be created for you.')
-    #create_password = input('If you would like a password created for you, please press 1: \n')
+    print('If you need help creating a password, one can be created for you.')
+    create_password = input('If you would like a password created for you, please press 1: \n')
     
     #if create_password == '1':
     #    generated_password = generate_password()
      #   print('Generated Password:', generated_password)
-    #####################################################
+    
 
     def generate_password(length=8):
         characters = string.ascii_letters + string.digits + punctuation
