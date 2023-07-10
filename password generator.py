@@ -1,4 +1,4 @@
-9
+
 def password_generator():
 
     import random
@@ -23,7 +23,8 @@ def password_generator():
             print('Password meets the necessary requirements.')
         else:
             print('This password does not meet the necessary requirements, please try again.')
-    password_necessities()
+
+    password_necessities()    
 
 
     #code below needs adjusting 
@@ -42,9 +43,28 @@ def password_generator():
     generate_password(length=8)
 
 
-    def saved_passwords():
-        user_saved_passwords = []
+    def saved_passwords_and_user_names():
+        ssaved_user_passwords = []
+        saved_user_names = {}
 
-    saved_passwords()
+        websites = True
+        while websites:
+            new_keys = input('Please enter the website below: \n')
+            need_more = input('Are there any more websites you want the user names remembered for? Select y or n below: \n')
+            if need_more == "n":
+                websites = False
+            
+
+        user_names = True
+        while user_names:
+            new_values = input('Please enter the usernames for the websites in the same corresponding order below: \n')
+            need_more_user_names = input('Any more user names needed to be saved? Select y or n below: \n')
+            if need_more_user_names == 'n':
+                user_names = False
+
+        saved_user_names[new_keys] = new_values 
+        print(saved_user_names)
+
+    saved_passwords_and_user_names()
 
 password_generator()
