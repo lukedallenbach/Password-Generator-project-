@@ -13,6 +13,7 @@ class Password_Generator_and_Saver:
 
 class password_generator(Password_Generator_and_Saver):
 
+
     def password_necessities(self):
         print('Passwords must contain at least one of each of these elements:')
         print('Passwords must include at least 1 of the following: \nA capital letter\nOne number \nAt least one special character')
@@ -36,13 +37,14 @@ class password_generator(Password_Generator_and_Saver):
 
 class User_Password(Password_Generator_and_Saver):
     
-    def check_usuer_password(self):
-        the_user_password = input('Pleae enter your password below: \n')
+    def check_usuer_password(self, length):
+        length = 8
+        the_user_password = input('Please enter your password below: \n')
 
         includes_uppercase = any(char.isupper() for char in the_user_password)
         includes_number = any(char.isdigit() for char in the_user_password)
         includes_special = any(char in punctuation for char in the_user_password)
-        is_long_enough = len(the_user_password) >= 8
+        is_long_enough = length
 
         if includes_uppercase and includes_number and includes_special and is_long_enough:
             print('Password meets the necessary requirements.')
@@ -75,7 +77,7 @@ class Saved_Passwords_and_User_Names(Password_Generator_and_Saver):
                 if need_more_user_names == 'no':
                     user_names = False
 
-        user_names_saved[new_keys] = new_values 
+        #user_names_saved[new_keys] = new_values 
         print(user_names_saved)
 
     def saved_user_passwords(self):
