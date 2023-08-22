@@ -1,10 +1,9 @@
-
-
 import random
 import string
 from string import punctuation
 
 class Password_Generator_and_Saver:
+#just initializes everything
 
     def __init__(self):
         pass
@@ -12,7 +11,7 @@ class Password_Generator_and_Saver:
     alphabet = string.ascii_lowercase + string.ascii_uppercase + string.digits + punctuation
 
 class password_generator(Password_Generator_and_Saver):
-
+#makes sure the user knows the requirements for the password
 
     def password_necessities(self):
         print('Passwords must contain at least one of each of these elements:')
@@ -34,24 +33,33 @@ class password_generator(Password_Generator_and_Saver):
             
         else:
             print('Sounds good. Please continue.')
+    #this part above asks the user if they want a password randomly generated for them
+
 
 class User_Password(Password_Generator_and_Saver):
+    #asks user to enter the password and ensures it meets all the set requirements
     
-    def check_usuer_password(self, length):
+    def check_user_password(self):
         length = 8
-        the_user_password = input('Please enter your password below: \n')
 
-        includes_uppercase = any(char.isupper() for char in the_user_password)
-        includes_number = any(char.isdigit() for char in the_user_password)
-        includes_special = any(char in punctuation for char in the_user_password)
-        is_long_enough = length
+        password_checker = True
+        while password_checker == True:
+            the_user_password = input('Please enter your password below: \n')
 
-        if includes_uppercase and includes_number and includes_special and is_long_enough:
-            print('Password meets the necessary requirements.')
-        else:
-            print('This password does not meet the necessary requirements, please try again.')
+            includes_uppercase = any(char.isupper() for char in the_user_password)
+            includes_number = any(char.isdigit() for char in the_user_password)
+            includes_special = any(char in punctuation for char in the_user_password)
+            is_long_enough = len(the_user_password) >= length
+
+            if includes_uppercase and includes_number and includes_special and is_long_enough:
+                print('Password meets the necessary requirements.')
+                password_checker = False    
+            else:
+                print('This password does not meet the necessary requirements, please try again.')
+    #the above code will ask the user to enter a password that meets all the requirements and will continue to ask that until an acceptable answer is given
 
 class Saved_Passwords_and_User_Names(Password_Generator_and_Saver):
+    #this is where I'm currently stuck. I need to have the code print out all the usernames and websites in a dictionary 
 
     def saved_user_names(self):
         user_names_saved = []
@@ -64,7 +72,7 @@ class Saved_Passwords_and_User_Names(Password_Generator_and_Saver):
             else:
                 if need_more == 'no':
                     websites = False
-
+            user_names_saved.append(new_keys)
 
         user_names = True
         while user_names:
@@ -76,10 +84,12 @@ class Saved_Passwords_and_User_Names(Password_Generator_and_Saver):
             else:
                 if need_more_user_names == 'no':
                     user_names = False
+     
+        print(f"The saved user names are: {user_names_saved}")
 
-        #user_names_saved[new_keys] = new_values 
-        print(user_names_saved)
 
+    #this is where i want the program to ask the user for the passwords and save them in a dictionary with the corresponding \
+    #usernames and websites 
     def saved_user_passwords(self):
         passwords = True
         while passwords:
@@ -105,12 +115,8 @@ create_the_passwords.password_necessities()
 create_the_passwords.generate_password(8)
 
 check_user_password = User_Password()
-check_user_password.check_usuer_password()
+check_user_password.check_user_password()
 
 time_to_save_the_passwords = Saved_Passwords_and_User_Names()
 time_to_save_the_passwords.saved_user_names()
 time_to_save_the_passwords.saved_user_passwords()
-
-
-
-
