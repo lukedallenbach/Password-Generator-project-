@@ -24,15 +24,30 @@ class password_generator(Password_Generator_and_Saver):
         password = ''.join(random.choice(characters) for _ in range(length))
 
         print('\nIf you need help creating a password, one can be created for you.')
-        create_password = input('If you would like a password created for you, please press 1: \n')
-        
-        if create_password == '1':
-            generated_password = password
-            print('Generated Password:', generated_password)
-            print('You can copy and paste this password.')
+
+        while True:
+            try:
+                create_password = int(input('If you would like a password created for you, please press 1. \nIf not, please press 2: '))
+                
+            except ValueError:
+                print('Invalid input.')
+
+
+            if create_password == '1':
+                generated_password = password
+                print('Generated Password: '+ generated_password)
+                print('You can copy and paste this password.')
+                break
             
-        else:
-            print('Sounds good. Please continue.')
+            elif create_password < 1:
+                print('Invalid input.')
+
+            elif create_password > 2:
+                print('Invalid input.')
+                
+            else:
+                print('Sounds good. Please continue.')
+                break
     #this part above asks the user if they want a password randomly generated for them
 
 
@@ -93,7 +108,7 @@ class Saved_Passwords_and_User_Names(Password_Generator_and_Saver):
     def saved_user_passwords(self):
         passwords = True
         while passwords:
-            saved_passwords = input('Do you want to save this password? Yes or no \n')
+            saved_passwords = input('Do you want to save passwords for these websites? Yes or no \n')
             if saved_passwords != 'yes' and saved_passwords != 'no':
                 print('You must select a valid choice.')
             else:
